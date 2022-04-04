@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<project name="" company="" manager="" phase="" project-start="20211220T000000Z" mrproject-version="2" calendar="1">
+  <properties/>
+  <phases/>
+  <calendars>
+    <day-types>
+      <day-type id="0" name="Travaill&#xE9;" description="Un jour de travail normal"/>
+      <day-type id="1" name="Ch&#xF4;m&#xE9;" description="Un jour ch&#xF4;m&#xE9; normal"/>
+      <day-type id="2" name="Utiliser la base" description="Utilise un jour du calendrier de base"/>
+    </day-types>
+    <calendar id="1" name="D&#xE9;faut">
+      <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="1" sun="1"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="0800" end="1200"/>
+          <interval start="1300" end="1700"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days/>
+    </calendar>
+  </calendars>
+  <tasks>
+    <task id="1" name="Diagramme de CU" note="" work="57600" start="20211220T000000Z" end="20211221T170000Z" work-start="20211220T080000Z" percent-complete="80" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="2" name="Diagramme de BPMN" note="" work="57600" start="20211221T170000Z" end="20211223T170000Z" work-start="20211222T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="1" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="3" name="Diagramme de Sequence" note="" work="57600" start="20211221T170000Z" end="20211223T170000Z" work-start="20211222T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="1" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="4" name="Diagramme de Classe" note="" work="144000" start="20211223T170000Z" end="20220404T112500Z" work-start="20211224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="3" type="FS"/>
+        <predecessor id="1" predecessor-id="2" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="5" name="G&#xE9;n&#xE9;ration automatique  SQL" note="" work="3600" start="20220404T112500Z" end="20220404T132500Z" work-start="20220404T112500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="4" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="6" name="G&#xE9;n&#xE9;ration automatique  du script python" note="" work="3600" start="20220404T112500Z" end="20220404T132500Z" work-start="20220404T112500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="4" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="7" name="Generation de tests unitaire" note="" work="3600" start="20220404T132500Z" end="20220404T142500Z" work-start="20220404T132500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="6" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="8" name="Definition des tests unitaire" note="" work="144000" start="20220404T142500Z" end="20220411T142500Z" work-start="20220404T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="7" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="9" name="Definition des tests d'int&#xE9;gration" note="" work="86400" start="20220411T142500Z" end="20220414T142500Z" work-start="20220411T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="8" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="10" name="Modifier les m&#xE9;thodes et les tests unitaire" note="" work="432000" start="20220411T142500Z" end="20220502T142500Z" work-start="20220411T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="8" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="11" name="Debug" note="" work="144000" start="20220502T142500Z" end="20220509T142500Z" work-start="20220502T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="9" type="FS"/>
+        <predecessor id="1" predecessor-id="10" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="12" name="DAO" note="" work="144000" start="20220509T142500Z" end="20220516T142500Z" work-start="20220509T142500Z" percent-complete="27" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="11" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="13" name="Lister les activit&#xE9;s " note="" work="144000" start="20220516T142500Z" end="20220523T142500Z" work-start="20220516T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="12" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="14" name="Lister les categories" note="" work="86400" start="20220523T142500Z" end="20220526T142500Z" work-start="20220523T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="13" type="FS"/>
+        <predecessor id="1" predecessor-id="12" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="15" name="Chercher comment telg acc&#xE8;de au GPS" note="" work="57600" start="20220516T142500Z" end="20220518T142500Z" work-start="20220516T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="12" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="16" name="Lister les villes et les quartiers" note="" work="86400" start="20220516T142500Z" end="20220519T142500Z" work-start="20220516T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="12" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="17" name="Pour chaque qartiers lister les lieu de r&#xE9;f&#xE9;rence." note="" work="115200" start="20220519T142500Z" end="20220525T142500Z" work-start="20220519T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="16" type="FS"/>
+        <predecessor id="1" predecessor-id="12" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="18" name="Vue" note="" work="201600" start="20220525T142500Z" end="20220603T142500Z" work-start="20220525T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="17" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="19" name="controleur" note="" work="288000" start="20220525T142500Z" end="20220608T142500Z" work-start="20220525T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="17" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="20" name="Rapport" note="" work="144000" start="20220608T142500Z" end="20220615T142500Z" work-start="20220608T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="19" type="FS"/>
+        <predecessor id="1" predecessor-id="18" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="21" name="Pr&#xE9;sentation" note="" work="144000" start="20220615T142500Z" end="20220622T142500Z" work-start="20220615T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="20" type="FS"/>
+      </predecessors>
+    </task>
+  </tasks>
+  <resource-groups/>
+  <resources>
+    <resource id="1" name="Abdoul malik KONDI" short-name="AMK" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource id="2" name="simone ADJANAYO" short-name="AS" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource id="3" name="Alhasan NGENDEU" short-name="AN" type="1" units="0" email="" note="" std-rate="0"/>
+  </resources>
+  <allocations>
+    <allocation task-id="4" resource-id="3" units="7"/>
+  </allocations>
+</project>
