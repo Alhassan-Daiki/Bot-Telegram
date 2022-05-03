@@ -20,108 +20,109 @@
     </calendar>
   </calendars>
   <tasks>
-    <task id="1" name="Diagramme de CU" note="" work="57600" start="20211220T000000Z" end="20211221T170000Z" work-start="20211220T080000Z" percent-complete="80" priority="0" type="normal" scheduling="fixed-work"/>
-    <task id="2" name="Diagramme de BPMN" note="" work="57600" start="20211221T170000Z" end="20211223T170000Z" work-start="20211222T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="1" name="Diagramme de CU" note="" work="1728000" start="20211220T000000Z" end="20220114T170000Z" work-start="20211220T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="2" name="Diagramme de BPMN" note="" work="864000" start="20220114T170000Z" end="20220128T170000Z" work-start="20220117T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="1" type="FS"/>
       </predecessors>
     </task>
-    <task id="3" name="Diagramme de Sequence" note="" work="57600" start="20211221T170000Z" end="20211223T170000Z" work-start="20211222T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="3" name="Diagramme de Sequence" note="" work="1152000" start="20220114T170000Z" end="20220203T104000Z" work-start="20220117T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="1" type="FS"/>
       </predecessors>
     </task>
-    <task id="4" name="Diagramme de Classe" note="" work="144000" start="20211223T170000Z" end="20220404T112500Z" work-start="20211224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="4" name="Diagramme de Classe" note="" work="3024000" start="20220203T104000Z" end="20220415T082640Z" work-start="20220203T104000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="3" type="FS"/>
         <predecessor id="1" predecessor-id="2" type="FS"/>
       </predecessors>
     </task>
-    <task id="5" name="G&#xE9;n&#xE9;ration automatique  SQL" note="" work="3600" start="20220404T112500Z" end="20220404T132500Z" work-start="20220404T112500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="5" name="G&#xE9;n&#xE9;ration automatique  SQL" note="" work="3600" start="20220418T000000Z" end="20220418T090000Z" work-start="20220418T080000Z" percent-complete="90" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20220418T000000Z"/>
       <predecessors>
         <predecessor id="1" predecessor-id="4" type="FS"/>
       </predecessors>
     </task>
-    <task id="6" name="G&#xE9;n&#xE9;ration automatique  du script python" note="" work="3600" start="20220404T112500Z" end="20220404T132500Z" work-start="20220404T112500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="6" name="G&#xE9;n&#xE9;ration automatique  du script java" note="" work="7200" start="20220418T000000Z" end="20220418T100000Z" work-start="20220418T080000Z" percent-complete="90" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20220418T000000Z"/>
       <predecessors>
         <predecessor id="1" predecessor-id="4" type="FS"/>
       </predecessors>
     </task>
-    <task id="7" name="Generation de tests unitaire" note="" work="3600" start="20220404T132500Z" end="20220404T142500Z" work-start="20220404T132500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="7" name="Generation de tests unitaire" note="" work="3600" start="20220418T100000Z" end="20220418T110000Z" work-start="20220418T100000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="6" type="FS"/>
       </predecessors>
     </task>
-    <task id="8" name="Definition des tests unitaire" note="" work="144000" start="20220404T142500Z" end="20220411T142500Z" work-start="20220404T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="8" name="Definition des tests unitaire" note="" work="144000" start="20220418T110000Z" end="20220425T110000Z" work-start="20220418T110000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="7" type="FS"/>
       </predecessors>
     </task>
-    <task id="9" name="Definition des tests d'int&#xE9;gration" note="" work="86400" start="20220411T142500Z" end="20220414T142500Z" work-start="20220411T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="9" name="Definition des tests d'int&#xE9;gration" note="" work="86400" start="20220425T110000Z" end="20220428T110000Z" work-start="20220425T110000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="8" type="FS"/>
       </predecessors>
     </task>
-    <task id="10" name="Modifier les m&#xE9;thodes et les tests unitaire" note="" work="432000" start="20220411T142500Z" end="20220502T142500Z" work-start="20220411T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="10" name="Modifier les m&#xE9;thodes (jusqu'au succ&#xE8;s des test)" note="" work="345600" start="20220528T000000Z" end="20220602T170000Z" work-start="20220530T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20220528T000000Z"/>
       <predecessors>
         <predecessor id="1" predecessor-id="8" type="FS"/>
       </predecessors>
     </task>
-    <task id="11" name="Debug" note="" work="144000" start="20220502T142500Z" end="20220509T142500Z" work-start="20220502T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="11" name="DAO" note="" work="144000" start="20220415T082640Z" end="20220422T082640Z" work-start="20220415T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="9" type="FS"/>
-        <predecessor id="1" predecessor-id="10" type="FS"/>
+        <predecessor id="1" predecessor-id="4" type="FS"/>
       </predecessors>
     </task>
-    <task id="12" name="DAO" note="" work="144000" start="20220509T142500Z" end="20220516T142500Z" work-start="20220509T142500Z" percent-complete="27" priority="0" type="normal" scheduling="fixed-work">
+    <task id="12" name="Lister les activit&#xE9;s " note="" work="144000" start="20220422T082640Z" end="20220426T132640Z" work-start="20220422T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="13" name="Lister les activit&#xE9;s " note="" work="144000" start="20220516T142500Z" end="20220523T142500Z" work-start="20220516T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="13" name="Lister les categories" note="" work="86400" start="20220426T132640Z" end="20220428T082640Z" work-start="20220426T132640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="12" type="FS"/>
+        <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="14" name="Lister les categories" note="" work="86400" start="20220523T142500Z" end="20220526T142500Z" work-start="20220523T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="14" name="Chercher comment telg acc&#xE8;de au GPS" note="" work="57600" start="20220509T000000Z" end="20220510T170000Z" work-start="20220509T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20220509T000000Z"/>
+    </task>
+    <task id="15" name="Lister les villes et les quartiers" note="" work="86400" start="20220422T082640Z" end="20220427T082640Z" work-start="20220422T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="13" type="FS"/>
-        <predecessor id="1" predecessor-id="12" type="FS"/>
+        <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="15" name="Chercher comment telg acc&#xE8;de au GPS" note="" work="57600" start="20220516T142500Z" end="20220518T142500Z" work-start="20220516T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="16" name="Pour chaque qartiers lister les lieu de r&#xE9;f&#xE9;rence." note="" work="115200" start="20220427T082640Z" end="20220503T082640Z" work-start="20220427T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="12" type="FS"/>
+        <predecessor id="1" predecessor-id="15" type="FS"/>
+        <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="16" name="Lister les villes et les quartiers" note="" work="86400" start="20220516T142500Z" end="20220519T142500Z" work-start="20220516T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <predecessors>
-        <predecessor id="1" predecessor-id="12" type="FS"/>
-      </predecessors>
-    </task>
-    <task id="17" name="Pour chaque qartiers lister les lieu de r&#xE9;f&#xE9;rence." note="" work="115200" start="20220519T142500Z" end="20220525T142500Z" work-start="20220519T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="17" name="Vue" note="" work="201600" start="20220503T082640Z" end="20220505T110640Z" work-start="20220503T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="16" type="FS"/>
-        <predecessor id="1" predecessor-id="12" type="FS"/>
       </predecessors>
     </task>
-    <task id="18" name="Vue" note="" work="201600" start="20220525T142500Z" end="20220603T142500Z" work-start="20220525T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="18" name="controleur" note="" work="288000" start="20220602T170000Z" end="20220608T104000Z" work-start="20220603T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
+        <predecessor id="1" predecessor-id="10" type="FS"/>
         <predecessor id="1" predecessor-id="17" type="FS"/>
       </predecessors>
     </task>
-    <task id="19" name="controleur" note="" work="288000" start="20220525T142500Z" end="20220608T142500Z" work-start="20220525T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="19" name="Debug" note="" work="144000" start="20220608T104000Z" end="20220615T104000Z" work-start="20220608T104000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="17" type="FS"/>
-      </predecessors>
-    </task>
-    <task id="20" name="Rapport" note="" work="144000" start="20220608T142500Z" end="20220615T142500Z" work-start="20220608T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <predecessors>
-        <predecessor id="1" predecessor-id="19" type="FS"/>
         <predecessor id="1" predecessor-id="18" type="FS"/>
       </predecessors>
     </task>
-    <task id="21" name="Pr&#xE9;sentation" note="" work="144000" start="20220615T142500Z" end="20220622T142500Z" work-start="20220615T142500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="20" name="Rapport" note="" work="144000" start="20220608T104000Z" end="20220609T170000Z" work-start="20220608T104000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="18" type="FS"/>
+        <predecessor id="1" predecessor-id="17" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="21" name="Pr&#xE9;sentation" note="" work="144000" start="20220609T170000Z" end="20220613T142000Z" work-start="20220610T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="20" type="FS"/>
       </predecessors>
@@ -134,6 +135,46 @@
     <resource id="3" name="Alhasan NGENDEU" short-name="AN" type="1" units="0" email="" note="" std-rate="0"/>
   </resources>
   <allocations>
+    <allocation task-id="21" resource-id="1" units="100"/>
+    <allocation task-id="20" resource-id="1" units="100"/>
+    <allocation task-id="18" resource-id="1" units="100"/>
+    <allocation task-id="17" resource-id="1" units="100"/>
+    <allocation task-id="15" resource-id="1" units="100"/>
+    <allocation task-id="14" resource-id="1" units="100"/>
+    <allocation task-id="13" resource-id="1" units="100"/>
+    <allocation task-id="12" resource-id="1" units="100"/>
+    <allocation task-id="19" resource-id="1" units="100"/>
+    <allocation task-id="10" resource-id="1" units="100"/>
+    <allocation task-id="9" resource-id="1" units="100"/>
+    <allocation task-id="6" resource-id="1" units="100"/>
+    <allocation task-id="4" resource-id="1" units="100"/>
+    <allocation task-id="3" resource-id="1" units="100"/>
+    <allocation task-id="2" resource-id="1" units="100"/>
+    <allocation task-id="1" resource-id="1" units="100"/>
+    <allocation task-id="21" resource-id="2" units="100"/>
+    <allocation task-id="20" resource-id="2" units="100"/>
+    <allocation task-id="18" resource-id="2" units="100"/>
+    <allocation task-id="17" resource-id="2" units="100"/>
+    <allocation task-id="13" resource-id="2" units="100"/>
+    <allocation task-id="11" resource-id="2" units="100"/>
+    <allocation task-id="10" resource-id="2" units="100"/>
+    <allocation task-id="5" resource-id="2" units="100"/>
+    <allocation task-id="4" resource-id="2" units="100"/>
+    <allocation task-id="3" resource-id="2" units="100"/>
+    <allocation task-id="2" resource-id="2" units="100"/>
+    <allocation task-id="1" resource-id="2" units="100"/>
+    <allocation task-id="21" resource-id="3" units="100"/>
+    <allocation task-id="20" resource-id="3" units="100"/>
+    <allocation task-id="18" resource-id="3" units="100"/>
+    <allocation task-id="17" resource-id="3" units="100"/>
+    <allocation task-id="16" resource-id="3" units="100"/>
+    <allocation task-id="12" resource-id="3" units="100"/>
+    <allocation task-id="10" resource-id="3" units="100"/>
+    <allocation task-id="8" resource-id="3" units="100"/>
+    <allocation task-id="7" resource-id="3" units="100"/>
+    <allocation task-id="3" resource-id="3" units="100"/>
+    <allocation task-id="2" resource-id="3" units="100"/>
+    <allocation task-id="1" resource-id="3" units="100"/>
     <allocation task-id="4" resource-id="3" units="7"/>
   </allocations>
 </project>
