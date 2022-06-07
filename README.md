@@ -16,7 +16,8 @@ Rappel Git :
 	** Récupération des fichiers depuis gitHub: git clone https://github.com/Alhassan-Daiki/Bot-Telegram.git
 	** Création d'une branche: git branch branche_name
 	** Basculer sur une autre branche: git checkout branche_name
-	** Pousser des fichiers sur gitHub.
+	** Pousser des fichiers sur gitHub. 
+		** git commit
 	** Fusionner les branches avec le pull request de git hub
 	
 NB: Si on a modifier sa branche local main par erreur.
