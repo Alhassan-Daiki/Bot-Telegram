@@ -70,7 +70,7 @@
         <predecessor id="1" predecessor-id="8" type="FS"/>
       </predecessors>
     </task>
-    <task id="11" name="DAO" note="" work="144000" start="20220415T082640Z" end="20220422T082640Z" work-start="20220415T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="11" name="DAO" note="" work="144000" start="20220415T082640Z" end="20220422T082640Z" work-start="20220415T082640Z" percent-complete="20" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="4" type="FS"/>
       </predecessors>
@@ -100,7 +100,7 @@
         <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="17" name="Vue" note="" work="201600" start="20220503T082640Z" end="20220505T110640Z" work-start="20220503T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="17" name="Vue" note="" work="201600" start="20220503T082640Z" end="20220505T110640Z" work-start="20220503T082640Z" percent-complete="18" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="16" type="FS"/>
       </predecessors>
