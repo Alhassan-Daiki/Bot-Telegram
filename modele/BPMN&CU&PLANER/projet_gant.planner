@@ -49,80 +49,80 @@
         <predecessor id="1" predecessor-id="4" type="FS"/>
       </predecessors>
     </task>
-    <task id="7" name="Generation de tests unitaire" note="" work="3600" start="20220418T100000Z" end="20220418T110000Z" work-start="20220418T100000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="7" name="Generation de tests unitaire" note="" work="3600" start="20220418T100000Z" end="20220418T110000Z" work-start="20220418T100000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="6" type="FS"/>
       </predecessors>
     </task>
-    <task id="8" name="Definition des tests unitaire" note="" work="144000" start="20220418T110000Z" end="20220425T110000Z" work-start="20220418T110000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="8" name="Definition des tests unitaire" note="" work="144000" start="20220418T110000Z" end="20220425T110000Z" work-start="20220418T110000Z" percent-complete="50" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="7" type="FS"/>
       </predecessors>
     </task>
-    <task id="9" name="Definition des tests d'int&#xE9;gration" note="" work="86400" start="20220425T110000Z" end="20220428T110000Z" work-start="20220425T110000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="9" name="Definition des tests d'int&#xE9;gration" note="" work="86400" start="20220425T110000Z" end="20220428T110000Z" work-start="20220425T110000Z" percent-complete="80" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="8" type="FS"/>
       </predecessors>
     </task>
-    <task id="10" name="Modifier les m&#xE9;thodes (jusqu'au succ&#xE8;s des test)" note="" work="345600" start="20220528T000000Z" end="20220602T170000Z" work-start="20220530T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="start-no-earlier-than" time="20220528T000000Z"/>
+    <task id="10" name="Modifier les m&#xE9;thodes (jusqu'au succ&#xE8;s des test)" note="" work="345600" start="20220606T000000Z" end="20220609T170000Z" work-start="20220606T080000Z" percent-complete="10" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20220606T000000Z"/>
       <predecessors>
         <predecessor id="1" predecessor-id="8" type="FS"/>
       </predecessors>
     </task>
-    <task id="11" name="DAO" note="" work="144000" start="20220415T082640Z" end="20220422T082640Z" work-start="20220415T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="11" name="DAO" note="" work="1123200" start="20220415T082640Z" end="20220609T082640Z" work-start="20220415T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="4" type="FS"/>
       </predecessors>
     </task>
-    <task id="12" name="Lister les activit&#xE9;s " note="" work="144000" start="20220422T082640Z" end="20220426T132640Z" work-start="20220422T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="12" name="Lister les activit&#xE9;s " note="" work="144000" start="20220609T082640Z" end="20220613T132640Z" work-start="20220609T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="13" name="Lister les categories" note="" work="86400" start="20220426T132640Z" end="20220428T082640Z" work-start="20220426T132640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="13" name="Lister les categories" note="" work="86400" start="20220613T132640Z" end="20220615T082640Z" work-start="20220613T132640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="12" type="FS"/>
         <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="14" name="Chercher comment telg acc&#xE8;de au GPS" note="" work="57600" start="20220509T000000Z" end="20220510T170000Z" work-start="20220509T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="14" name="Chercher comment telg acc&#xE8;de au GPS" note="" work="57600" start="20220509T000000Z" end="20220510T170000Z" work-start="20220509T080000Z" percent-complete="10" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="start-no-earlier-than" time="20220509T000000Z"/>
     </task>
-    <task id="15" name="Lister les villes et les quartiers" note="" work="86400" start="20220422T082640Z" end="20220427T082640Z" work-start="20220422T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="15" name="Lister les villes et les quartiers" note="" work="86400" start="20220609T082640Z" end="20220614T082640Z" work-start="20220609T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="16" name="Pour chaque qartiers lister les lieu de r&#xE9;f&#xE9;rence." note="" work="115200" start="20220427T082640Z" end="20220503T082640Z" work-start="20220427T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="16" name="Pour chaque qartiers lister les lieu de r&#xE9;f&#xE9;rence." note="" work="115200" start="20220614T082640Z" end="20220620T082640Z" work-start="20220614T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="15" type="FS"/>
         <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="17" name="Vue" note="" work="201600" start="20220503T082640Z" end="20220505T110640Z" work-start="20220503T082640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="17" name="Vue" note="" work="201600" start="20220620T082640Z" end="20220622T110640Z" work-start="20220620T082640Z" percent-complete="90" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="16" type="FS"/>
       </predecessors>
     </task>
-    <task id="18" name="controleur" note="" work="288000" start="20220602T170000Z" end="20220608T104000Z" work-start="20220603T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="18" name="controleur" note="" work="288000" start="20220622T110640Z" end="20220627T144640Z" work-start="20220622T110640Z" percent-complete="5" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="10" type="FS"/>
         <predecessor id="1" predecessor-id="17" type="FS"/>
       </predecessors>
     </task>
-    <task id="19" name="Debug" note="" work="144000" start="20220608T104000Z" end="20220615T104000Z" work-start="20220608T104000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="19" name="Debug" note="" work="144000" start="20220627T144640Z" end="20220704T144640Z" work-start="20220627T144640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="18" type="FS"/>
       </predecessors>
     </task>
-    <task id="20" name="Rapport" note="" work="144000" start="20220608T104000Z" end="20220609T170000Z" work-start="20220608T104000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="20" name="Rapport" note="" work="144000" start="20220627T144640Z" end="20220629T110640Z" work-start="20220627T144640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="18" type="FS"/>
         <predecessor id="1" predecessor-id="17" type="FS"/>
       </predecessors>
     </task>
-    <task id="21" name="Pr&#xE9;sentation" note="" work="144000" start="20220609T170000Z" end="20220613T142000Z" work-start="20220610T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="21" name="Pr&#xE9;sentation" note="" work="144000" start="20220629T110640Z" end="20220701T082640Z" work-start="20220629T110640Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="20" type="FS"/>
       </predecessors>

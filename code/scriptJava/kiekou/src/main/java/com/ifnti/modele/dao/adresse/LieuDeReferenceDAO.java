@@ -8,38 +8,44 @@ import com.ifnti.modele.dao.DAO;
 public class LieuDeReferenceDAO extends DAO <LieuDeReference> {
 
     @Override
-    protected void create(LieuDeReference object) {
+    public String create(LieuDeReference object) {
         // TODO Auto-generated method stub
-        
+        return null;
+    }
+
+  //  @Override
+    public boolean update(LieuDeReference object) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     @Override
-    protected void update(LieuDeReference object) {
+    public boolean delete(LieuDeReference object) {
         // TODO Auto-generated method stub
-        
+        return false;
     }
 
     @Override
-    protected void delete(LieuDeReference object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    protected LieuDeReference findById(String id) {
+    public LieuDeReference findById(String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected LieuDeReference findByName(String pName) {
+    public LieuDeReference findByName(String pName) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected ArrayList<LieuDeReference> getAll() {
+    public ArrayList<LieuDeReference> getAll() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean update(String requete) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

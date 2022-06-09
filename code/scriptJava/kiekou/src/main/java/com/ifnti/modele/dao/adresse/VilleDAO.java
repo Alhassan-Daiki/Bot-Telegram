@@ -8,38 +8,44 @@ import com.ifnti.modele.dao.DAO;
 public class VilleDAO extends DAO <Ville> {
 
     @Override
-    protected void create(Ville object) {
+    public String create(Ville object) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+  //  @Override
+    public void update(Ville object) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    protected void update(Ville object) {
+    public boolean delete(Ville object) {
         // TODO Auto-generated method stub
-        
+        return false;
     }
 
     @Override
-    protected void delete(Ville object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    protected Ville findById(String id) {
+    public Ville findById(String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected Ville findByName(String pName) {
+    public Ville findByName(String pName) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected ArrayList<Ville> getAll() {
+    public ArrayList<Ville> getAll() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean update(String requete) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

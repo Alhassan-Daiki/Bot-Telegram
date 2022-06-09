@@ -1,5 +1,6 @@
 drop database if exists kiakou;
 create database kiakou;
+
 \c kiakou
 
 
@@ -120,34 +121,34 @@ DECLARE
 BEGIN
 	if tg_table_name = 'personne' then
 		cle:='PE'|| nextval('seq_personne');
-		new.numProduit:=cle;
+		new.id_personne:=cle;
 	elsif tg_table_name = 'categorie' then
 		cle:='CA'|| nextval('seq_categorie') ;
-		new.numClient:=cle;
+		new.id_categorie:=cle;
 	elsif tg_table_name = 'activite' then
 		cle:='AC'|| nextval('seq_activite');
-		new.numCommande:=cle;
+		new.id_activite:=cle;
 	elsif tg_table_name = 'adresse' then
 		cle:='AD'|| nextval('seq_adresse');
-		new.numligne:=cle;
+		new.id_adresse:=cle;
 	elsif tg_table_name = 'region' then
 		cle:='RE'|| nextval('seq_region');
-		new.numligne:=cle;
+		new.id_region:=cle;
 	elsif tg_table_name = 'ville' then
 		cle:='VI'|| nextval('seq_ville');
-		new.numligne:=cle;
+		new.id_ville:=cle;
 	elsif tg_table_name = 'lieu_de_reference' then
 		cle:='LR'|| nextval('seq_lieu_de_reference');
-		new.numligne:=cle;
+		new.id_reference:=cle;
 	elsif tg_table_name = 'horaire' then
 		cle:='HO'|| nextval('seq_horaire');
-		new.numligne:=cle;
+		new.id_horaire:=cle;
 	elsif tg_table_name = 'service' then
 		cle:='SE'|| nextval('seq_service');
-		new.numligne:=cle;
+		new.id_service:=cle;
 	elsif tg_table_name = 'horaire_par_semaine' then
 		cle:='HS'|| nextval('seq_horaire_par_semaine');
-		new.numligne:=cle;
+		new.id_service:=cle;
 	end if;
 	return new;
 END;

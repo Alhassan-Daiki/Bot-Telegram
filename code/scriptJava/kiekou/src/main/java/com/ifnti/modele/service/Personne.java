@@ -1,11 +1,28 @@
 package com.ifnti.modele.service ;
 
+import com.ifnti.controlleur.Kiakou;
+
 public class Personne {
+    private String mNum;
+
     private String mNom;
 
     private String mPrenom;
 
     private String mContact;
+
+    public Personne(String mNom, String mPrenom, String mContact) {
+        this.mNom = mNom;
+        this.mPrenom = mPrenom;
+        this.mContact = mContact;
+        this.mNum = Kiakou.pDao.create(this);
+    }
+
+
+
+    public String getmNum() {
+        return mNum;
+    }
 
     public String getmNom() {
         return mNom;
@@ -33,7 +50,9 @@ public class Personne {
 
     @Override
     public String toString() {
-        return "Personne{" + "mNom=" + mNom + ", mPrenom=" + mPrenom + ", mContact=" + mContact + '}';
+        return "Personne{" + "mNom=" + mNom + ", mPrenom=" + mPrenom + ", mContact=" + mContact + "}";
     }
+
+
 
 }

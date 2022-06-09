@@ -8,38 +8,47 @@ import com.ifnti.modele.dao.DAO;
 public class ActiviteDAO extends DAO <Activite> {
 
     @Override
-    protected void create(Activite object) {
+    public String create(Activite a) {
         // TODO Auto-generated method stub
+
+        
+        String requete = String.format("insert into Activité (id_catégorie) values('%s') ;", 
+        a.getMNom()/*,s.getmPersonne().getmNom()*/);
+        System.out.println(requete);
+        this.insertObject(requete,"activite");
+        return null;    
+        
         
     }
 
     @Override
-    protected void update(Activite object) {
+    public boolean update(String requete) {
         // TODO Auto-generated method stub
-        
+        return false;
     }
 
     @Override
-    protected void delete(Activite object) {
+    public boolean delete(Activite object) {
         // TODO Auto-generated method stub
-        
+        return false;
     }
 
     @Override
-    protected Activite findById(String id) {
+    public Activite findById(String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected Activite findByName(String pName) {
+    public Activite findByName(String pName) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected ArrayList<Activite> getAll() {
+    public ArrayList<Activite> getAll() {
         // TODO Auto-generated method stub
         return null;
     }
+
 }

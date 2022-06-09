@@ -10,39 +10,46 @@ import com.ifnti.modele.dao.DAO;
 public class CategorieDAO extends DAO <Categorie> {
 
     @Override
-    protected void create(Categorie object) {
+    public String create(Categorie object) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+   // @Override
+    public void update(Categorie object) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    protected void update(Categorie object) {
+    public boolean delete(Categorie object) {
         // TODO Auto-generated method stub
-        
+        return false;
+
     }
 
     @Override
-    protected void delete(Categorie object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    protected Categorie findById(String id) {
+    public Categorie findById(String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected Categorie findByName(String pName) {
+    public Categorie findByName(String pName) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected ArrayList<Categorie> getAll() {
+    public ArrayList<Categorie> getAll() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean update(String requete) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }

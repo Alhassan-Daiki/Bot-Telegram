@@ -8,38 +8,44 @@ import com.ifnti.modele.dao.DAO;
 public class QuartierDAO extends DAO <Quartier> {
 
     @Override
-    protected void create(Quartier object) {
+    public String create(Quartier object) {
         // TODO Auto-generated method stub
-        
+        return null;
+    }
+
+    //@Override
+    public boolean update(Quartier object) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     @Override
-    protected void update(Quartier object) {
+    public boolean delete(Quartier object) {
         // TODO Auto-generated method stub
-        
+        return false;
     }
 
     @Override
-    protected void delete(Quartier object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    protected Quartier findById(String id) {
+    public Quartier findById(String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected Quartier findByName(String pName) {
+    public Quartier findByName(String pName) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected ArrayList<Quartier> getAll() {
+    public ArrayList<Quartier> getAll() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean update(String requete) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

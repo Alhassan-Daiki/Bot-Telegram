@@ -8,38 +8,44 @@ import com.ifnti.modele.dao.DAO;
 public class RegionDAO extends DAO <Region> {
 
     @Override
-    protected void create(Region object) {
+    public String create(Region object) {
         // TODO Auto-generated method stub
-        
+        return null;
+    }
+
+    //@Override
+    public boolean update(Region object) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     @Override
-    protected void update(Region object) {
+    public boolean delete(Region object) {
         // TODO Auto-generated method stub
-        
+        return false;
     }
 
     @Override
-    protected void delete(Region object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    protected Region findById(String id) {
+    public Region findById(String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected Region findByName(String pName) {
+    public Region findByName(String pName) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    protected ArrayList<Region> getAll() {
+    public ArrayList<Region> getAll() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean update(String requete) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }
