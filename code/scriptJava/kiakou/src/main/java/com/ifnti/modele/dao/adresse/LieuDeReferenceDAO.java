@@ -1,6 +1,5 @@
 package com.ifnti.modele.dao.adresse ;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ifnti.modele.adresse.LieuDeReference;
@@ -9,13 +8,13 @@ import com.ifnti.modele.dao.DAO;
 public class LieuDeReferenceDAO extends DAO <LieuDeReference> {
 
     @Override
-    public boolean create(LieuDeReference object) throws SQLException {
+    public String create(LieuDeReference object) {
         // TODO Auto-generated method stub
-        return false;
+        return null;
     }
 
     @Override
-    public boolean update(String requete) {
+    public boolean update(LieuDeReference object) {
         // TODO Auto-generated method stub
         return false;
     }

@@ -1,5 +1,8 @@
 drop database if exists kiakou;
 create database kiakou;
+
+create user groupe3 password 'groupe3';
+
 \c kiakou
 
 
@@ -112,6 +115,31 @@ increment 1
 start 10000 ;
 
 
+
+--------- permission
+---::::: Table 
+grant all on personne to groupe3;
+grant all on service to groupe3;
+grant all on horaire_par_semaine to groupe3;
+grant all on categorie to groupe3;
+grant all on activite to groupe3;
+grant all on horaire to groupe3;
+grant all on region to groupe3;
+grant all on lieu_de_reference to groupe3;
+
+---::: Sequence
+
+grant all on seq_personne to groupe3;
+grant all on seq_categorie to groupe3;
+grant all on seq_activite to groupe3;
+grant all on seq_adresse to groupe3;
+grant all on seq_ville to groupe3;
+grant all on seq_service to groupe3;
+grant all on seq_horaire to groupe3;
+grant all on seq_horaire_par_semaine to groupe3;
+
+
+
 create or replace  function numAutho() returns trigger as
 
 $$
@@ -120,34 +148,34 @@ DECLARE
 BEGIN
 	if tg_table_name = 'personne' then
 		cle:='PE'|| nextval('seq_personne');
-		new.numProduit:=cle;
+		new.id_personne:=cle;
 	elsif tg_table_name = 'categorie' then
 		cle:='CA'|| nextval('seq_categorie') ;
-		new.numClient:=cle;
+		new.id_categorie:=cle;
 	elsif tg_table_name = 'activite' then
 		cle:='AC'|| nextval('seq_activite');
-		new.numCommande:=cle;
+		new.id_activite:=cle;
 	elsif tg_table_name = 'adresse' then
 		cle:='AD'|| nextval('seq_adresse');
-		new.numligne:=cle;
+		new.id_adresse:=cle;
 	elsif tg_table_name = 'region' then
 		cle:='RE'|| nextval('seq_region');
-		new.numligne:=cle;
+		new.id_region:=cle;
 	elsif tg_table_name = 'ville' then
 		cle:='VI'|| nextval('seq_ville');
-		new.numligne:=cle;
+		new.id_ville:=cle;
 	elsif tg_table_name = 'lieu_de_reference' then
 		cle:='LR'|| nextval('seq_lieu_de_reference');
-		new.numligne:=cle;
+		new.id_reference:=cle;
 	elsif tg_table_name = 'horaire' then
 		cle:='HO'|| nextval('seq_horaire');
-		new.numligne:=cle;
+		new.id_horaire:=cle;
 	elsif tg_table_name = 'service' then
 		cle:='SE'|| nextval('seq_service');
-		new.numligne:=cle;
+		new.id_service:=cle;
 	elsif tg_table_name = 'horaire_par_semaine' then
 		cle:='HS'|| nextval('seq_horaire_par_semaine');
-		new.numligne:=cle;
+		new.id_service:=cle;
 	end if;
 	return new;
 END;

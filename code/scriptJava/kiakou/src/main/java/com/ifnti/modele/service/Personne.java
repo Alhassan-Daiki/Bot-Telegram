@@ -1,5 +1,7 @@
 package com.ifnti.modele.service ;
 
+import com.ifnti.controlleur.Kiakou;
+
 public class Personne {
     
     private String mNum;
@@ -7,13 +9,38 @@ public class Personne {
     private String mNom;
 
     private String mPrenom;
-
+    
     private String mContact;
 
-    public Personne(String pNom, String pPrenom, String pContact){
-        this.mNom = pNom;
-        this.mPrenom = pPrenom;
-        this.mContact = pContact;
+    public static class PersonneBuilder {
+        private String mNum = "indefinie";
+        private String mNom = "indefinie";
+        private String mPrenom = "indefinie";
+        private String mContact = "indefinie";
+
+        public PersonneBuilder withFristName(String pNom){
+            this.mNom = pNom;
+            return this;
+        }
+
+        public PersonneBuilder withLastName(String pPrenom){
+            this.mPrenom = pPrenom;
+            return this;
+        }
+
+        public PersonneBuilder withContact(String pContact){
+            this.mContact = pContact;
+            return this;
+        }
+
+        public Personne build(){
+            Personne personne = new Personne();
+            personne.mNom = mNom;
+            personne.mPrenom = mPrenom;
+            personne.mContact = mContact;
+            personne.mNum = Kiakou.pDao.create(personne);
+            return personne;
+        }
     }
 
     public String getmNom() {

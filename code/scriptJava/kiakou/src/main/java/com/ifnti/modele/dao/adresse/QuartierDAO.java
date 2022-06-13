@@ -1,6 +1,5 @@
 package com.ifnti.modele.dao.adresse ;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ifnti.modele.adresse.Quartier;
@@ -9,13 +8,13 @@ import com.ifnti.modele.dao.DAO;
 public class QuartierDAO extends DAO <Quartier> {
 
     @Override
-    public boolean create(Quartier object) throws SQLException {
+    public String create(Quartier object) {
         // TODO Auto-generated method stub
-        return false;
+        return null;
     }
 
     @Override
-    public boolean update(String requete) {
+    public boolean update(Quartier object) {
         // TODO Auto-generated method stub
         return false;
     }
@@ -43,6 +42,4 @@ public class QuartierDAO extends DAO <Quartier> {
         // TODO Auto-generated method stub
         return null;
     }
-
-   
 }

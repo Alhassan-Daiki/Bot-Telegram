@@ -85,5 +85,5 @@ public class Horaire {
     public String toString() {
         return "Horaire{" + "mHeure_debut_matinee=" + mHeure_debut_matinee + ", mHeure_fin_matinee=" + mHeure_fin_matinee + ", mHeure_debut_soiree=" + mHeure_debut_soiree + ", mHeure_fin_soiree=" + mHeure_fin_soiree + ", mMinute_debut_matinee=" + mMinute_debut_matinee + ", mMinute_fin_matinee=" + mMinute_fin_matinee + ", mMinute_debut_soiree=" + mMinute_debut_soiree + ", mMinute_fin_soiree=" + mMinute_fin_soiree + '}';
     }
-
+    
 }

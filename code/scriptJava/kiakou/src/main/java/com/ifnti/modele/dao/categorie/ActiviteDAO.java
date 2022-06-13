@@ -9,13 +9,21 @@ import com.ifnti.modele.dao.DAO;
 public class ActiviteDAO extends DAO <Activite> {
 
     @Override
-    public boolean create(Activite object) throws SQLException {
+    public String create(Activite object) throws SQLException {
         // TODO Auto-generated method stub
-        return false;
+        /*
+         * // TODO Auto-generated method stub
+        String requete = String.format("insert into Activité (id_catégorie) values('%s') ;", 
+        a.getMNom(),s.getmPersonne().getmNom());
+        System.out.println(requete);
+        this.insertObject(requete,"activite");
+        return null; 
+        */
+        return null;
     }
 
     @Override
-    public boolean update(String requete) {
+    public boolean update(Activite object) {
         // TODO Auto-generated method stub
         return false;
     }
@@ -44,5 +52,6 @@ public class ActiviteDAO extends DAO <Activite> {
         return null;
     }
 
-   
+    
+
 }
