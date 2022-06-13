@@ -11,13 +11,13 @@ import com.ifnti.modele.dao.DAO;
 public class CategorieDAO extends DAO <Categorie> {
 
     @Override
-    public boolean create(Categorie object) throws SQLException {
+    public String create(Categorie object) throws SQLException {
         // TODO Auto-generated method stub
-        return false;
+        return null;
     }
 
     @Override
-    public boolean update(String requete) {
+    public boolean update(Categorie object) {
         // TODO Auto-generated method stub
         return false;
     }
@@ -46,5 +46,6 @@ public class CategorieDAO extends DAO <Categorie> {
         return null;
     }
 
+    
 
 }

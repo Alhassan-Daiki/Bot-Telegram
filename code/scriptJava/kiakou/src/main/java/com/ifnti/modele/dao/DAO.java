@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public abstract class DAO <T> {
     public static Connection connection;
 
-    public abstract boolean create(final T object) throws SQLException;
+    public abstract String create(final T object) throws SQLException;
 
-    public abstract boolean update(final String requete);
+    public abstract boolean update(final T object);
 
     public abstract boolean delete(final T object);
 
@@ -24,7 +24,7 @@ public abstract class DAO <T> {
 
     static {
         try{
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/kiakou", "group3", "group3");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/kiakou", "groupe3", "groupe3");
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -39,15 +39,19 @@ public abstract class DAO <T> {
      * @simone
      * @param pRequest : requete sql en caractère.
      */
-    protected void insertObject(final String pRequest) {
+    protected String insertObject(final String pRequest, String table) {
         // Insertion d'un objet
+        ResultSet resultat = selectObject(pRequest);
         try{
-            Statement transaction = DAO.connection.createStatement();
-            transaction.executeUpdate(pRequest);
+            if (resultat.next()){
+                String idTable = resultat.getString("id_"+ table);
+                return idTable;
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }
-
+        
+        return null;
     }
 
     protected ResultSet selectObject(final String pRequest) {
@@ -68,17 +72,15 @@ public abstract class DAO <T> {
         return 0;
     }
 
-    public int updateObject(final String pRequest) {
-        int resultat = 0;
+    public void updateObject(final String pRequest) {
+       
         try{
             Statement transaction = DAO.connection.createStatement();
-            resultat =  transaction.executeUpdate(pRequest);
+            transaction.executeUpdate(pRequest);
            
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return  resultat;
-
 
     }
 
