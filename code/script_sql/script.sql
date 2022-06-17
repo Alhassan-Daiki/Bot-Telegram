@@ -19,7 +19,7 @@ create table activite ( id_activite varchar primary key,
 						 nom varchar,
 						 id_categorie varchar references categorie(id_categorie));
 
-create table region ( id_region varchar primary key);
+create table region ( id_region varchar primary key, nom varchar);
 
 create table ville (  id_ville varchar primary key,
 					  nom varchar,
@@ -52,7 +52,7 @@ create table service ( id_service varchar primary key,
 						);
 
 create table adresse ( id_adresse varchar primary key ,
-						 id_service varchar references service(id_service),
+						id_service varchar references service(id_service),
 						id_reference varchar references lieu_de_reference(id_reference));
 
 

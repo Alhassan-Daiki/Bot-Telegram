@@ -38,17 +38,29 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
         
         //....rechercher la position de la session.
         int position = findSession(update);
-        System.out.println("Etape deb: "+SessionID.listeSession.get(position).getEtape());
         int etape = SessionID.listeSession.get(position).getEtape();
+
+        System.out.println("Etape deb: "+SessionID.listeSession.get(position).getEtape());
         System.out.println("user: "+SessionID.listeSession.get(position).getUser());
 
-        if (update.getMessage().getContact()!=null || update.getMessage().getLocation()!=null){
+        System.out.println(update);
+
+        /*if (update.hasCallbackQuery()){
+            System.out.println("mmmmmmmm");
+        } else {
+            try {
+                execute(sendInlineKeyBoardMessage(update.getMessage().getChatId().toString(), "saisir heure", "http://saisirheure.com/", "Go to web site.")); // envoyer le message.
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        }*/
+
+        /*if (update.getMessage().getContact()!=null || update.getMessage().getLocation()!=null){
             //SessionID.listeSession.get(position).setContact(update.getMessage().getContact());
             update.getMessage().setText("");
             System.out.println(":::::: numéro de telephone reçu ::::::");
             System.out.println("::::::: location ::"+update.getMessage().getLocation());
         } 
-       
 
         if(update.getMessage().getText().equals("h") && etape==0){
             message.setText(welcome()); //Définir un text
@@ -56,9 +68,11 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
             etapeInfos.add("Welcome");
             //SessionID.listeSession.get(position).addArrayEtapeInfo(etapeInfos); // Ajouter un tableau [ ["welcome"] ]
             SessionID.listeSession.get(position).getArrayEtapeInfo().add(etapeInfos);   // Ajouter un tableau [ [""] ]
-            System.out.println(SessionID.listeSession.get(position).getArrayEtapeInfo());
             SessionID.listeSession.get(position).incrementEtape(); //incrementer l'étape.
+
+            System.out.println(SessionID.listeSession.get(position).getArrayEtapeInfo());
             System.out.println("Etape fin: "+SessionID.listeSession.get(position).getEtape());
+
             try {
                 execute(message); // envoyer le message.
             } catch (TelegramApiException e) {
@@ -88,7 +102,7 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
-        } 
+        } */
         
     }
     public SendMessage processSaveService(Update update, SendMessage message){
@@ -222,16 +236,16 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
                 sid.getArrayEtapeInfo().add(new ArrayList<>());
                 return message;
             
-            case 11: //:::::::::: Localisation :::::::::::
+            /*case 11: //:::::::::: Localisation :::::::::::
                 //:::::::::: Récupérer la ville.
                 ArrayList infoQuartier = (ArrayList) sid.getArrayEtapeInfo().get(listSize-4);
                 infoQuartier.add(update.getMessage().getText());
                 message.setText("Où se trouve votre service?(localisation).");
                 sid.getArrayEtapeInfo().add(new ArrayList<>());
                 request(message, false, true);
-                return message;
+                return message;*/
             
-            case 12: //:::::::::: Horrair :::::::::::
+            case 11: //:::::::::: Horrair :::::::::::
                 //:::::::::: Récupérer la localisation .
                 ArrayList infoLocalisation = (ArrayList) sid.getArrayEtapeInfo().get(listSize-4);
                 infoLocalisation.add(update.getMessage().getText());
@@ -240,14 +254,18 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
                 sid.getArrayEtapeInfo().add(new ArrayList<>());
                 return message;
 
-            case 14://:::::::::: Fin :::::::::::
-                ArrayList infoService = (ArrayList) sid.getArrayEtapeInfo().get(listSize-5);
+            case 12://:::::::::: Fin :::::::::::
+                if (update.hasCallbackQuery()){
+                    System.out.println(update.getCallbackQuery().getMessage().getText());
+                }
+                /*ArrayList infoService = (ArrayList) sid.getArrayEtapeInfo().get(listSize-5);
                 infoService.add(update.getMessage().getLocation());
                 message.setText("Localisation bien reçut.&Fin");
                 sid.getArrayEtapeInfo().add(new ArrayList<>());
                 request(message, false, true);
                 sid.resetEtape();
-                sid.resetEtapeInfo();
+                sid.resetEtapeInfo();*/
+                message.setText("00000");
                 return message;
         }
         
@@ -325,7 +343,7 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
 
         inlineKeyboardButton.setText(name);
         inlineKeyboardButton.setUrl(url);
-        //inlineKeyboardButton.setCallbackData("90");//request_contact
+        inlineKeyboardButton.setCallbackData("90");
         
         List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
 

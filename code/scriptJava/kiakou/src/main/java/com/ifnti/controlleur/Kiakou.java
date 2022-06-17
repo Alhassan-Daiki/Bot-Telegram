@@ -12,6 +12,20 @@ public class Kiakou {
     public static ActiviteDAO aDao = new ActiviteDAO();
     public static VilleDAO vDao = new VilleDAO();*/
 
+    /***
+     * ::::::: créer un string en partant d'un titre et d'une liste.
+     * @param title
+     * @param table
+     * @return
+     */
+    public static String send_list_object(String title, String table){
+        String result = "";
+        result += title ;
+        if (table=="categorie"){
+            
+        }
+        return result;
+    }
 
     public static String requestQuartier(){
         String title = "Dans Quelle quartier êtes vous ?&";
