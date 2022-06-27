@@ -38,7 +38,7 @@ public class Personne {
             personne.mNom = mNom;
             personne.mPrenom = mPrenom;
             personne.mContact = mContact;
-            personne.mNum = Kiakou.pDao.create(personne);
+            personne.mNum = Kiakou.pDAO.create(personne);
             return personne;
         }
     }

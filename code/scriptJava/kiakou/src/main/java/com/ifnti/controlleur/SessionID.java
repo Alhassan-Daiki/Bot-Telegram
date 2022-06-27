@@ -1,26 +1,35 @@
 package com.ifnti.controlleur;
 
-import java.time.LocalTime;
+
 import java.util.ArrayList;
 
 import org.telegram.telegrambots.meta.api.objects.Contact;
+
 import org.telegram.telegrambots.meta.api.objects.User;
+
+import com.ifnti.modele.service.Personne.PersonneBuilder;
+
+/*
+ * SessionID est une classe qui nous permet
+ * de donner une mémoire au bot.
+ * :::::Attributs:::::
+ * Etape == Où j'en suis dans la discution ?
+ * ChatId == Je discute avec qui. 
+ */
 
 public class SessionID {
     static ArrayList<SessionID> listeSession = new ArrayList<SessionID>();
-    private ArrayList<ArrayList> listeEtapeInfo = new ArrayList<ArrayList>();
+    private ArrayList<PersonneBuilder> listeEtapeInfo = new ArrayList<PersonneBuilder>();
+    private int[][] listeSousEtape = {{0}, {0}, {0}};
+
     private Long chatId;
     private User user;
     private Contact contact;
-    private int startSession;
-    private int endSession;
     private int etape;
 
     public SessionID(Long chatId, User user) {
         this.chatId = chatId;
         this.setUser(user);
-        this.setStartSession();
-        this.setEndSession();
         this.etape = 0 ;
         SessionID.listeSession.add(this);
     }
@@ -43,28 +52,14 @@ public class SessionID {
         return this.etape;
     }
     
-    public ArrayList getEtapeInfo(ArrayList etapeInfos){
-        return this.listeEtapeInfo ;
-    }
-
     public void resetEtapeInfo(){
-        this.listeEtapeInfo = new ArrayList<ArrayList>(); 
-    }
-    public void addArrayEtapeInfo(ArrayList etapeInfos){
-        this.listeEtapeInfo.add(etapeInfos);
+        this.listeEtapeInfo = new ArrayList<PersonneBuilder>(); 
     }
 
-    public ArrayList getArrayEtapeInfo(){
+    public ArrayList<PersonneBuilder> getArrayEtapeInfo(){
         return this.listeEtapeInfo;
     }
 
-    public boolean sessionActive(){
-        //System.out.println("\nDebut: "+this.startSession+" Fin: "+this.endSession);
-        if (LocalTime.now().getSecond()<this.endSession){
-            return true;
-        }
-        return false;
-    }
     public static int findChatId(Long chatId){
         for (SessionID s : SessionID.listeSession) {
             //System.out.println("s.ch: "+s.chatId+"\n cid: "+chatId);
@@ -75,30 +70,20 @@ public class SessionID {
         }
         return -1;
     }
-
-    public int getEndSession() {
-        return this.endSession;
-    }
-
-    public void setEndSession() {
-        this.endSession = 120;
-        this.endSession += this.startSession; 
-    }
-
-    public int getStartSession() {
-        return this.startSession;
-    }
-
-    public void setStartSession() {
-        this.startSession = LocalTime.now().getSecond();
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int[][] getListeSousEtape() {
+        return listeSousEtape;
+    }
+
+    public void setListeSousEtape(int[][] listeSousEtape) {
+        this.listeSousEtape = listeSousEtape;
     }
    
 }
