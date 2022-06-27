@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public abstract class DAO <T> {
     public static Connection connection;
 
-    public abstract String create(final T object) throws SQLException;
+    public abstract String create(final T object) ;
 
     public abstract boolean update(final T object);
 
@@ -31,16 +31,8 @@ public abstract class DAO <T> {
        
     }
 
-    protected T mRead(final String pSearchName) {
-        // TODO Auto-generated return
-        return null;
-    }
-    /**
-     * @simone
-     * @param pRequest : requete sql en caractère.
-     */
     protected String insertObject(final String pRequest, String table) {
-        // Insertion d'un objet
+
         ResultSet resultat = selectObject(pRequest);
         try{
             if (resultat.next()){
@@ -55,7 +47,7 @@ public abstract class DAO <T> {
     }
 
     protected ResultSet selectObject(final String pRequest) {
-        // TODO Auto-generated return
+
         ResultSet resultat = null;
         try{
             Statement transaction = DAO.connection.createStatement();
@@ -68,7 +60,7 @@ public abstract class DAO <T> {
     }
 
     protected int getLastId() {
-        // TODO Auto-generated return
+
         return 0;
     }
 

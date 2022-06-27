@@ -1,5 +1,7 @@
 package com.ifnti.modele.dao.adresse ;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ifnti.modele.adresse.Region;
@@ -9,37 +11,71 @@ public class RegionDAO extends DAO <Region> {
 
     @Override
     public String create(Region object) {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     @Override
     public boolean update(Region object) {
-        // TODO Auto-generated method stub
+
         return false;
     }
 
     @Override
     public boolean delete(Region object) {
-        // TODO Auto-generated method stub
+
         return false;
     }
 
     @Override
     public Region findById(String id) {
-        // TODO Auto-generated method stub
+        
+        String requete = String.format("SELECT * FROM region WHERE id_region = '%s'", id); 
+        ResultSet resultat =  selectObject(requete);
+        try {
+            if(resultat.next()) {
+                String nom = resultat.getString("nom");
+                return new Region(id, nom);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public Region findByName(String pName) {
-        // TODO Auto-generated method stub
+
+        String requete = String.format("SELECT * FROM region WHERE nom = '%s'", pName);
+        ResultSet resultat =  selectObject(requete);
+        try {
+            if(resultat.next()){
+                String id_region = resultat.getString("id_region");
+                return new Region(id_region, pName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public ArrayList<Region> getAll() {
-        // TODO Auto-generated method stub
+        
+        ArrayList<Region> regions = new ArrayList<Region>();
+        String requete = String.format("SELECT * FROM region ;");
+        ResultSet resultat =  selectObject(requete);
+        try {
+            while(resultat.next()){
+                String id_region = resultat.getString("id_region");
+                String nom = resultat.getString("nom");
+                regions.add(new Region(id_region, nom));
+            }
+            return regions;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
         return null;
     }
 }

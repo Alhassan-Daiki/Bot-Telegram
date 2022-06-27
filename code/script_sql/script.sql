@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 drop database if exists kiakou;
 create database kiakou;
 
@@ -213,3 +214,5 @@ for each row execute procedure   numAutho();
 
 create trigger autho_horaireSem before insert on horaire_par_semaine
 for each row execute procedure   numAutho();
+=======
+>>>>>>> Stashed changes

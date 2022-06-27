@@ -19,11 +19,14 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.session.TelegramLongPollingSessionBot;
 
+import com.ifnti.modele.service.Personne;
+import com.ifnti.modele.service.Personne.PersonneBuilder;
+
 public class KiakouBot extends TelegramLongPollingSessionBot{
 
     @Override
     public String getBotUsername() {
-        // TODO Auto-generated method stub
+        
         return "Kiakou";
     }
 
@@ -31,13 +34,13 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
     @Override
     public void onUpdateReceived(Update update, java.util.Optional<Session> botSession) {
         System.out.println(":::::::::::::::::::Réception d'un message::::::::::::::::::::");
-        //..........................
-        System.out.println("id: "+update.getMessage().getChatId());
+
         SendMessage message = new SendMessage(); //nouvelle instance de send message.
         message.setChatId(update.getMessage().getChatId().toString()); // Définir l'id du chat.
         
         //....rechercher la position de la session.
         int position = findSession(update);
+<<<<<<< Updated upstream
         int etape = SessionID.listeSession.get(position).getEtape();
 
         System.out.println("Etape deb: "+SessionID.listeSession.get(position).getEtape());
@@ -57,6 +60,29 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
 
         /*if (update.getMessage().getContact()!=null || update.getMessage().getLocation()!=null){
             //SessionID.listeSession.get(position).setContact(update.getMessage().getContact());
+=======
+
+        int etape = SessionID.listeSession.get(position).getEtape();
+        SessionID sid =  SessionID.listeSession.get(position);
+        int[][] listeSousEtape = sid.getListeSousEtape();
+        System.out.println(":::::::::::: new value = "+listeSousEtape[1][0]+"::::::::::::");
+
+
+        //System.out.println(update);
+
+        /*if (update.hasCallbackQuery()){
+            System.out.println("mmmmmmmm");
+        } else {
+            try {
+                execute(sendInlineKeyBoardMessage(update.getMessage().getChatId().toString(), "saisir heure", "http://saisirheure.com/", "Go to web site.")); // envoyer le message.
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        }*/
+
+        if (update.getMessage().getContact()!=null || update.getMessage().getLocation()!=null){
+            SessionID.listeSession.get(position).setContact(update.getMessage().getContact());
+>>>>>>> Stashed changes
             update.getMessage().setText("");
             System.out.println(":::::: numéro de telephone reçu ::::::");
             System.out.println("::::::: location ::"+update.getMessage().getLocation());
@@ -64,6 +90,7 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
 
         if(update.getMessage().getText().equals("h") && etape==0){
             message.setText(welcome()); //Définir un text
+<<<<<<< Updated upstream
             ArrayList<String> etapeInfos = new ArrayList<>();
             etapeInfos.add("Welcome");
             //SessionID.listeSession.get(position).addArrayEtapeInfo(etapeInfos); // Ajouter un tableau [ ["welcome"] ]
@@ -73,17 +100,22 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
             System.out.println(SessionID.listeSession.get(position).getArrayEtapeInfo());
             System.out.println("Etape fin: "+SessionID.listeSession.get(position).getEtape());
 
+=======
+            SessionID.listeSession.get(position).incrementEtape(); //incrementer l'étape.
+>>>>>>> Stashed changes
             try {
                 execute(message); // envoyer le message.
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
+            
         } else if (etape > 0){
-            System.out.println("else........");
             switch (etape){
                 case 1: 
-                    message=processSaveService(update, message);
-                    //System.out.println("valeur saisi: "+(update.getMessage().getText()));
+                    message = processSaveService(update, message);
+                    break;
+                case 2:
+                    message = processSeachService(update, message);
                     break;
                 default:
                     System.err.println("OKKKKK");
@@ -105,19 +137,19 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
         } */
         
     }
+
     public SendMessage processSaveService(Update update, SendMessage message){
          //....rechercher la position de la session.
         int position = findSession(update);
         SessionID sid =  SessionID.listeSession.get(position);
-        int listeSize = sid.getArrayEtapeInfo().size();
+        int[][] listeSousEtape = sid.getListeSousEtape();
         
-        if (listeSize >=1 && listeSize <=4){
+        if (listeSousEtape[1][0] >= 0 && listeSousEtape[1][0] <= 4){
             message = savePersonne(update, message);
         }
-        listeSize = sid.getArrayEtapeInfo().size();
-        System.out.println(":::::::::::: new size = "+listeSize+"::::::::::::");
-        if (listeSize >= 5){
-            if (listeSize==5){
+        
+        if (listeSousEtape[1][0] >= 4){
+            if (listeSousEtape[1][0]==4){
                 String firstMessage = message.getText();
                 message = saveService(update, message);
                 String secondMessage = message.getText();
@@ -125,58 +157,221 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
             } else {
                 message = saveService(update, message);
             }
-            //return message;
+
         }
-        System.out.println(":::::::::::: new liste::::::::::::\n"+sid.getArrayEtapeInfo());
+        System.out.println(":::::::::::: new value = "+listeSousEtape[1][0]+"::::::::::::");
 
         return message;
     }
-    /**
-     * Process
-     * @param update
-     * @param sid
-     * @return SendMessage
-     */
+
+    public SendMessage processSeachService(Update update, SendMessage message) {
+
+        //....rechercher la position de la session.
+        int position = findSession(update);
+        SessionID sid =  SessionID.listeSession.get(position);
+        int[][] listeSousEtape = sid.getListeSousEtape();
+
+        System.out.println(":::::::::::: new value = "+listeSousEtape[2][0]+"::::::::::::");
+
+        switch(listeSousEtape[2][0]){
+            case 0: //::::::: Demander la categorie. :::::::
+                if (update.getMessage().getText().equals("2")){
+                    message.setText(
+                        Kiakou.requestCategorie(
+                            "Dans quelle catégorie se trouve l'activité recherché ?",
+                             "categorie")
+                    );
+                    listeSousEtape[2][0] += 1;                    
+                    return message;
+                } 
+                message.setText("nombre incorrect.");
+                return message;
+                
+            case 1: //::::::: Demander l'activité. :::::::  
+                if (update.getMessage().getText().equals("1")){
+                    message.setText(
+                        Kiakou.requestCategorie(
+                            "Quelle service recherché vous ?", 
+                            "activite"
+                            ) 
+                    );
+                    listeSousEtape[2][0] += 1;
+                    return message;
+                }
+                message.setText(
+                        "Réponse incorrect.&"
+                        +Kiakou.requestCategorie(
+                            "Dans quelle catégorie se trouve l'activité recherché ?",
+                             "categorie")
+                    );
+                return message;  
+            
+            case 2: //::::::: Demander la région. :::::::  
+                if (update.getMessage().getText().equals("1")){
+                    message.setText(
+                        "Dans quelle région du Togo êtes vous ?"+
+                        Kiakou.requestRegionByCountry()
+                    );
+                    listeSousEtape[2][0] += 1;
+                    return message;
+                }
+                message.setText(
+                    "nombre incorrect.&"
+                    +Kiakou.requestCategorie(
+                        "Quelle service recherché vous ?", 
+                        "activite"
+                        ) 
+                    );
+                return message;
+            
+            case 3: //::::::: Demander la ville. :::::::  
+                if (update.getMessage().getText().equals("1")){
+                    message.setText(
+                        "Dans quelle ville êtes vous ?"+
+                        Kiakou.requestTownByRegion("REG000001")
+                    );
+                    listeSousEtape[2][0] += 1;
+                    return message;
+                }
+                message.setText(
+                    "nombre incorrect.&"
+                    +"Dans quelle région du Togo êtes vous ?"+
+                    Kiakou.requestRegionByCountry()
+                    );
+                return message;
+
+            case 4: //::::::: Demander le quartier. :::::::  
+                if (update.getMessage().getText().equals("1")){
+                    message.setText(
+                        "Dans quelle quartier êtes vous ?"
+                        +Kiakou.requestQuartierByTown("VIL000001") 
+                    );
+                    listeSousEtape[2][0] += 1;
+                    return message;
+                }
+                message.setText(
+                    "nombre incorrect.&"
+                    +"Dans quelle ville êtes vous ?"+
+                    Kiakou.requestTownByRegion("REG000001")
+                    );
+                return message;  
+                
+            case 5: //::::::: Demander l'existence d'un lieu populaire. :::::::  
+                if (update.getMessage().getText().equals("1")){
+                    message.setText("Vous êtes vers un lieu populaire ?(oui ou non)");
+                    listeSousEtape[2][0] += 1;
+                    return message;
+                }
+                message.setText(
+                    "nombre incorrect."
+                    +"Dans quelle quartier êtes vous ?"
+                    +Kiakou.requestQuartierByTown("VIL000001") 
+                    );
+                return message; 
+            
+            case 6: //::::::: Demander le nom du lieu. :::::::  
+                if (update.getMessage().getText().toLowerCase().equals("oui")){
+                    message.setText(
+                        "Le quelle parmis la liste ?"+
+                        Kiakou.requestReferencePlaceByQuartier("QAR000002")
+                    );
+                    listeSousEtape[2][0] += 1;
+                    return message;
+                } else if (update.getMessage().getText().toLowerCase().equals("non")){
+                    listeSousEtape[2][0] += 1;
+                    message.setText(Kiakou.showResultatSeacheService("QAR000002"));
+                    return message;
+                }
+                message.setText(
+                    "réponse incorrect.&"
+                    +"Vous êtes vers un lieu populaire ?(oui ou non)"
+                    );
+                return message;  
+            
+            case 7: //::::::: Demander le nom du lieu. :::::::  
+                if (update.getMessage().getText().toLowerCase().equals("1")){
+                    message.setText(
+                        "Voici le service qu'on à trouvé ?&"
+                        +Kiakou.showResultatSeacheService("QAR000002")
+                    );
+                    listeSousEtape[2][0] += 1;
+                    return message;
+                }
+                message.setText(
+                    "réponse incorrect."
+                    +"Le quelle parmis la liste ?"+
+                    Kiakou.requestReferencePlaceByQuartier("QAR000002")
+                    );
+                return message;
+            
+            /*case 8:
+                message.setText(Kiakou.showResultatSeacheService(""));
+                return message;*/
+        }
+        
+        message.setText(Kiakou.showResultatSeacheService(""));
+        return message;
+    }
+
     public SendMessage savePersonne(Update update, SendMessage message){
         //....rechercher la position de la session.
         int position = findSession(update);
         SessionID sid =  SessionID.listeSession.get(position);
-        int listeSize = sid.getArrayEtapeInfo().size();
+        int[][] listeSousEtape = sid.getListeSousEtape();
 
-        //Creation d'une insatance de send message.
-        switch(listeSize){
-            case 1: //::::::: Demander le nom. :::::::
+
+        switch(listeSousEtape[1][0]){
+            case 0: //::::::: Demander le nom. :::::::
                 if (update.getMessage().getText().equals("1")){
                     message.setText("Quelle est Votre nom.");
+                    listeSousEtape[1][0] += 1;
                     //::::::: Mise à jour de la liste Info. :::::::
-                    sid.getArrayEtapeInfo().add(new ArrayList<>());
+                    PersonneBuilder personneBuilder = new Personne.PersonneBuilder();
+                    sid.getArrayEtapeInfo().add(personneBuilder);
+                    return message;
+
+                } else if (update.getMessage().getText().equals("2")){
+                    sid.incrementEtape();
+                    message = processSeachService(update, message);
+                    return message;
+                } else {
+                    message.setText("Choix incorrect.&"+menuWelcome());
+                    return message;
                 }
+                
+
+            case 1: //::::::: Demander le prenom. :::::::
+
+                if (update.getMessage().getText().length() > 2){
+                    sid.getArrayEtapeInfo().get(0).withFristName(update.getMessage().getText().toUpperCase()); 
+                    listeSousEtape[1][0] += 1;
+                    message.setText("Quelle est votre prenom.");
+                    return message;
+                } 
+                message.setText("Nom incorrect.");
                 return message;
 
-            case 2: //::::::: Demander le prenom. :::::::
-                ArrayList<String> infoNom = new ArrayList<>(); //:::récupere le nom
-                infoNom.add(update.getMessage().getText()); 
-                //::::::: Mise à jour de la liste Info. :::::::
-                sid.getArrayEtapeInfo().add(listeSize-1, infoNom);
-                message.setText("Quelle est votre prenom.");
+            case 2: //::::::: Demander le contact. :::::::
+                if (update.getMessage().getText().length() > 2) {
+                    listeSousEtape[1][0] += 1;
+                    sid.getArrayEtapeInfo().get(0).withLastName(update.getMessage().getText().toLowerCase());
+                    message.setText("Envoyer nous votre contact.");
+                    request(message, true, false);
+                    return message;
+                } 
+                message.setText("Prénom incorrect.");
                 return message;
 
-            case 3: //::::::: Demander le contact. :::::::
-                //:::::::Récupérer la liste contenant le nom et le prenom. ::::::: 
-                ArrayList infoPrenom = (ArrayList) SessionID.listeSession.get(position).getArrayEtapeInfo().get(1); 
-                //::::::: Mise à jour de la liste Info. :::::::
-                infoPrenom.add(update.getMessage().getText()); 
-                sid.getArrayEtapeInfo().add(listeSize, new ArrayList<>()); //neccessaire pour passer au cas size==4
-                message.setText("Envoyer nous votre contact.");
-                request(message, true, false);
-                return message;
-
-            case 4: //::::::: Demander l'activité. :::::::
-                //:::::::Récupérer la liste contenant le nom, le prenom et le contact. ::::::: 
-                ArrayList infoPersonne = (ArrayList) SessionID.listeSession.get(position).getArrayEtapeInfo().get(1); 
-                infoPersonne.add(update.getMessage().getContact()); 
-                SessionID.listeSession.get(position).getArrayEtapeInfo().add(new ArrayList<>());
-                message.setText("Contact bien reçu.&");
+            case 3: //::::::: Demander . :::::::
+                if (sid.getContact() != null){
+                    listeSousEtape[1][0] += 1;
+                    sid.getArrayEtapeInfo().get(0).withContact(sid.getContact().getPhoneNumber().toString());
+                    //sid.getArrayEtapeInfo().get(0).build();
+                    message.setText("Contact bien reçu.&");
+                    System.out.println("vcard==="+sid.getContact().getVCard());
+                    return message;   
+                }
+                message.setText("numéro de téléphone incorrect.");
                 return message;
         }
         return null;
@@ -185,55 +380,67 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
     public SendMessage saveService(Update update, SendMessage message){
         //....rechercher la position de la session.
         int position = findSession(update);  
-        int listSize = SessionID.listeSession.get(position).getArrayEtapeInfo().size();
         SessionID sid =  SessionID.listeSession.get(position);
+        int[][] listeSousEtape = sid.getListeSousEtape();
 
-        switch(listSize){
-            case 5: //::::::::::catégorie::::::::::: 
+        switch(listeSousEtape[1][0]){
+            case 4: //::::::::::catégorie::::::::::: 
                 //Creation d'une insatance de send message.
                 //nouvelle instance de personne.
                 //::::::::::ici:::::::::::
-                message.setText(Kiakou.requestCategorie());
-                sid.getArrayEtapeInfo().add(new ArrayList<>());
+                listeSousEtape[1][0] += 1;
+                message.setText(
+                    Kiakou.requestCategorie(
+                        "Dans quelle categorie se trouve votre activité ?", 
+                        "categorie"
+                        )
+                    );
                 return message;
-            case 6: //::::::::::activité:::::::::::
+            case 5: //::::::::::activité:::::::::::
                 //:::::::::: Récupérer la catégorie
-                ArrayList infocCategorie = (ArrayList) sid.getArrayEtapeInfo().get(listSize-1);
-                infocCategorie.add(update.getMessage().getText());
-                message.setText(Kiakou.requestActivite());
-                sid.getArrayEtapeInfo().add(new ArrayList<>());
+                if (update.getMessage().getText().equals("1")){
+                    listeSousEtape[1][0] += 1;
+                    message.setText(
+                        Kiakou.requestCategorie(
+                            "Quelle est votre activité ?", 
+                            "activite"
+                            )
+                    );
+                    return message;
+                }
+                message.setText("nombre incorrect.");
                 return message;
-            
-            case 7: //:::::::::: Désignation:::::::::::
+                
+            case 6: //:::::::::: Désignation:::::::::::
                 //:::::::::: Récupérer l'activité
-                ArrayList infocActivite = (ArrayList) sid.getArrayEtapeInfo().get(listSize-2);
-                infocActivite.add(update.getMessage().getText());
-                message.setText("Quelle est le nom de votre service ?");
-                sid.getArrayEtapeInfo().add(new ArrayList<>());
+                if (update.getMessage().getText().equals("1")) {
+                    message.setText("Quelle est le nom de votre service ?(au moins 3 lettres)");
+                    listeSousEtape[1][0] += 1;
+                    return message;
+                }
+                message.setText("nom incorrect.");
                 return message;
             
-            case 8: //:::::::::: Déscription:::::::::::
+            case 7: //:::::::::: Déscription:::::::::::
                 //:::::::::: Récupérer le nom
-                ArrayList infoDesignation = (ArrayList) sid.getArrayEtapeInfo().get(listSize-3);
-                infoDesignation.add(update.getMessage().getText());
-                message.setText("Expliquer ce que vous faite.(au plus 20 mots)");
-                sid.getArrayEtapeInfo().add(new ArrayList<>());
+                if (update.getMessage().getText().length() > 240 ) {
+                    message.setText("Expliquer ce que vous faite.(au plus 60 mots)");
+                    listeSousEtape[1][0] += 1;
+                    return message;
+                }
+                message.setText("description invalide.");
                 return message;
             
-            case 9: //:::::::::: Ville :::::::::::
+            case 8: //:::::::::: Ville :::::::::::
                 //:::::::::: Récupérer la description.
-                ArrayList infoDescription = (ArrayList) sid.getArrayEtapeInfo().get(listSize-4);
-                infoDescription.add(update.getMessage().getText());
                 message.setText(Kiakou.requestVille());
-                sid.getArrayEtapeInfo().add(new ArrayList<>());
+                listeSousEtape[1][0] += 1;
                 return message;
             
-            case 10: //:::::::::: quartier :::::::::::
+            case 9: //:::::::::: quartier :::::::::::
                 //:::::::::: Récupérer la ville.
-                ArrayList infoVille = (ArrayList) sid.getArrayEtapeInfo().get(listSize-5);
-                infoVille.add(update.getMessage().getText());
                 message.setText(Kiakou.requestQuartier());
-                sid.getArrayEtapeInfo().add(new ArrayList<>());
+                listeSousEtape[1][0] += 1;
                 return message;
             
             /*case 11: //:::::::::: Localisation :::::::::::
@@ -247,11 +454,8 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
             
             case 11: //:::::::::: Horrair :::::::::::
                 //:::::::::: Récupérer la localisation .
-                ArrayList infoLocalisation = (ArrayList) sid.getArrayEtapeInfo().get(listSize-4);
-                infoLocalisation.add(update.getMessage().getText());
                 String text = "Cliquer sur le bouton en bas pour saisir vos horaire";
                 message = sendInlineKeyBoardMessage(""+update.getMessage().getChatId(),"saisir heure","saisirHeure.com", text);
-                sid.getArrayEtapeInfo().add(new ArrayList<>());
                 return message;
 
             case 12://:::::::::: Fin :::::::::::
@@ -365,7 +569,7 @@ public class KiakouBot extends TelegramLongPollingSessionBot{
 
     @Override
     public String getBotToken() {
-        // TODO Auto-generated method stub
+
         return "5148846345:AAGTo5uKUOcqhRnMvn1X1gWWdHid4P1pjtE";
     }
 }
