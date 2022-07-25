@@ -11,20 +11,33 @@ public class Personne {
     private String mPrenom;
     
     private String mContact;
+    
+    private String motDePasse;
+
+    public Personne() {
+    }
+
+    public Personne(String mNum, String mNom, String mPrenom, String mContact, String _motDePasse) {
+        this.mNum = mNum;
+        this.mNom = mNom;
+        this.mPrenom = mPrenom;
+        this.mContact = mContact;
+        this.motDePasse = _motDePasse;
+    }
 
     public static class PersonneBuilder {
-        private String mNum = "indefinie";
         private String mNom = "indefinie";
         private String mPrenom = "indefinie";
         private String mContact = "indefinie";
+        private String motDePasse = "indefinie";
 
         public PersonneBuilder withFristName(String pNom){
-            this.mNom = pNom;
+            this.mNom = pNom.toUpperCase();
             return this;
         }
 
         public PersonneBuilder withLastName(String pPrenom){
-            this.mPrenom = pPrenom;
+            this.mPrenom = pPrenom.toLowerCase();
             return this;
         }
 
@@ -33,11 +46,17 @@ public class Personne {
             return this;
         }
 
+        public PersonneBuilder withPassword(String motDePasse){
+            this.motDePasse = Kiakou.hashPassword(motDePasse);
+            return this;
+        }
+
         public Personne build(){
             Personne personne = new Personne();
             personne.mNom = mNom;
             personne.mPrenom = mPrenom;
             personne.mContact = mContact;
+            personne.motDePasse = motDePasse;
             personne.mNum = Kiakou.pDAO.create(personne);
             return personne;
         }
@@ -49,6 +68,14 @@ public class Personne {
 
     public String getmNum() {
         return mNum;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
     public void setmNum(String mNum) {

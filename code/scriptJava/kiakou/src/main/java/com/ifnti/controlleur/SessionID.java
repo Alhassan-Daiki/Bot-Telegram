@@ -7,7 +7,6 @@ import org.telegram.telegrambots.meta.api.objects.Contact;
 
 import org.telegram.telegrambots.meta.api.objects.User;
 
-import com.ifnti.modele.service.Personne.PersonneBuilder;
 
 /*
  * SessionID est une classe qui nous permet
@@ -19,9 +18,11 @@ import com.ifnti.modele.service.Personne.PersonneBuilder;
 
 public class SessionID {
     static ArrayList<SessionID> listeSession = new ArrayList<SessionID>();
-    private ArrayList<PersonneBuilder> listeEtapeInfo = new ArrayList<PersonneBuilder>();
-    private int[][] listeSousEtape = {{0}, {0}, {0}};
-
+    private ArrayList<Object> listeEtapeInfo = new ArrayList<Object>();
+    
+    private int[][] listeSousEtape = {{0}, {0}, {0}, {0}};
+    public static int ijour = 0;
+    static String sousEtapeInfo = "";
     private Long chatId;
     private User user;
     private Contact contact;
@@ -34,6 +35,25 @@ public class SessionID {
         SessionID.listeSession.add(this);
     }
 
+    public void resetListeSousEtape(){
+        for (int[] elt : this.listeSousEtape){
+            elt[0] = 0;
+        }
+    }
+    public int getSousEtapeValue(int position){
+        return listeSousEtape[position][0];
+    }
+    
+    public void setSousEtapeValue(int position, int value){
+        listeSousEtape[position][0] = value;
+        
+    }
+
+    public void incrementSousEtape(int position){
+        listeSousEtape[position][0]++;
+        
+    }
+
     public Contact getContact() {
         return contact;
     }
@@ -41,22 +61,16 @@ public class SessionID {
         this.contact = contact;
     }
     
-    public void resetEtape(){
-        this.etape = 0;
-    }
-    public void incrementEtape(){
-        this.etape += 1;
+    
+    public void setEtape(int etape){
+        this.etape = etape;
     }
 
     public int getEtape(){
         return this.etape;
     }
     
-    public void resetEtapeInfo(){
-        this.listeEtapeInfo = new ArrayList<PersonneBuilder>(); 
-    }
-
-    public ArrayList<PersonneBuilder> getArrayEtapeInfo(){
+    public ArrayList<Object> getArrayEtapeInfo(){
         return this.listeEtapeInfo;
     }
 

@@ -1,5 +1,7 @@
 package com.ifnti.modele.adresse;
 
+import com.ifnti.controlleur.Kiakou;
+
 public class Adresse {
 
     String mNum;
@@ -30,7 +32,7 @@ public class Adresse {
             Adresse adresse = new Adresse();
             adresse.mQuartier = this.quartier;
             adresse.mLieuDeReference = this.lieuDeReference;
-            this.mNum = "";
+            adresse.mNum = Kiakou.adDAO.create(adresse);
             return adresse;
  
         }
@@ -50,16 +52,36 @@ public class Adresse {
         return mNum;
     }
 
-    public Quartier getQuartier() {
+    public Quartier getMQuartier() {
         return this.mQuartier;
     }
 
-    public LieuDeReference getLieuDeReference() {
+    public LieuDeReference getMLieuDeReference() {
         return this.mLieuDeReference;
     }
 
     @Override
     public String toString() {
         return "Adresse [lieuDeReference=" + mLieuDeReference + ", mNum=" + mNum + ", quartier=" + mQuartier + "]";
+    }
+
+    public void setmNum(String mNum) {
+        this.mNum = mNum;
+    }
+
+    public Quartier getmQuartier() {
+        return mQuartier;
+    }
+
+    public void setmQuartier(Quartier mQuartier) {
+        this.mQuartier = mQuartier;
+    }
+
+    public LieuDeReference getmLieuDeReference() {
+        return mLieuDeReference;
+    }
+
+    public void setmLieuDeReference(LieuDeReference mLieuDeReference) {
+        this.mLieuDeReference = mLieuDeReference;
     }
 }

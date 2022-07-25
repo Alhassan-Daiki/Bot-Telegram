@@ -16,8 +16,8 @@ public class PersonneDAO extends DAO <Personne> {
     public String create(Personne p) {
 
         String requete  = String.format(
-            "insert into Personne(nom,prenom,contact)values('%s','%s','%s') returning id_personne;",
-            p.getmNom(),p.getmPrenom(),p.getmContact()
+            "insert into Personne(nom,prenom,contact, mot_de_passe)values('%s','%s','%s', '%s') returning id_personne;",
+            p.getmNom(),p.getmPrenom(),p.getmContact(), p.getMotDePasse()
             );
         System.out.println(requete);
         String resultat = this.insertObject(requete,"personne");
@@ -29,7 +29,7 @@ public class PersonneDAO extends DAO <Personne> {
     public boolean update(Personne p) {
        
         String requete = String.format(
-            "update Personne set(nom, prenom,contact) =('%s','%s', '%s') where id_personne = '%s' )",
+            "update Personne set(nom, prenom,contact) =('%s','%s', '%s') where id_personne = '%s' ;",
             p.getmNom(),p.getmPrenom(),p.getmContact() ,p.getmNum()
             )  ;
         super.updateObject(requete);
@@ -58,11 +58,8 @@ public class PersonneDAO extends DAO <Personne> {
                 String nom = resultat.getString("nom");
                 String prenom = resultat.getString("prenom");
                 String contact = resultat.getString("contact");
-                Personne p = new Personne.PersonneBuilder()
-                        .withFristName(nom)
-                        .withLastName(prenom)
-                        .withContact(contact)
-                        .build();
+                String motDePasse = resultat.getString("mot_de_passe");
+                Personne p = new Personne(id, nom, prenom, contact, motDePasse);
 
                 return p;
             }
@@ -80,21 +77,32 @@ public class PersonneDAO extends DAO <Personne> {
         ResultSet resultat = super.selectObject(requete);                 
         try {
             if (resultat.next()) {
-                String nom = resultat.getString("nom");
-                String prenom = resultat.getString("prenom");
-                String contact = resultat.getString("contact");
-                Personne p = new Personne.PersonneBuilder()
-                        .withFristName(nom)
-                        .withLastName(prenom)
-                        .withContact(contact)
-                        .build();
-
+                String id_personne = resultat.getString("id_personne");
+                Personne p = this.findById(id_personne);
                 return p;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    public Personne findByPersonne(String nom, String prenom){
+        System.out.println("OK***********************");
+        String requete = String.format("SELECT * FROM personne WHERE nom = '%s' and prenom = '%s';" , nom, prenom);
+        ResultSet resultat = super.selectObject(requete);                 
+        try {
+            if (resultat.next()) {
+                String id_personne = resultat.getString("id_personne");
+                Personne p = this.findById(id_personne);
+                System.out.println(p.getmNom());
+                return p;
+            }
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            return null;
+        }
         return null;
     }
 
@@ -107,15 +115,8 @@ public class PersonneDAO extends DAO <Personne> {
         try {
             
             while (resultat.next()){
-                String nom = resultat.getString("nom");
-                String prenom = resultat.getString("prenom");
-                String contact = resultat.getString("contact");
-                Personne p = new Personne.PersonneBuilder()
-                        .withFristName(nom)
-                        .withLastName(prenom)
-                        .withContact(contact)
-                        .build();
-
+                String num = resultat.getString("id_personne");
+                Personne p = this.findById(num);
                 personnes.add(p);
             }
             return personnes;

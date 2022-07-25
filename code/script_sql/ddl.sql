@@ -3,7 +3,8 @@
 drop database if exists kiakou;
 create database kiakou;
 
-create user groupe3 password 'groupe3';
+--create user groupe3 password 'groupe3';
+--alter user groupe3 createdb;
 
 \c kiakou
 
@@ -11,7 +12,8 @@ create user groupe3 password 'groupe3';
 create table personne ( id_personne varchar primary key, 
 						 nom varchar,
  						 prenom varchar, 
-						 contact varchar);
+						 contact varchar,
+						 mot_de_passe varchar);
 
 
 create table categorie ( id_categorie varchar primary key,
@@ -37,13 +39,14 @@ create table lieu_de_reference  (id_reference varchar primary key,
 
 create table horaire (id_horaire varchar primary key,
 					heure_debut_matinee integer,
-					heure_fin_matinee integer,
-					heure_debut_soiree integer,
-					heure_fin_soiree integer,
 					minute_debut_matinee integer,
+					heure_fin_matinee integer,
 					minute_fin_matinee integer,
+					heure_debut_soiree integer,
 					minute_debut_soiree integer,
-					minute_fin_soiree integer);
+					heure_fin_soiree integer,
+					minute_fin_soiree integer,
+					h24 integer);		
 
 create table adresse ( id_adresse varchar primary key ,
 				   id_quartier varchar references quartier(id_quartier),
@@ -56,6 +59,15 @@ create table service ( id_service varchar primary key,
 					id_activite varchar references activite(id_activite),
 					id_adresse varchar references adresse(id_adresse));
 
-create table horaire_par_semaine (id_service varchar primary key,
-								 id_horaire varchar references horaire(id_horaire));
+create table horaire_par_semaine (id_service varchar,
+								 id_horaire varchar references horaire(id_horaire),
+								 jour varchar check (
+									jour in ('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche')
+								 ),
+								  primary key (id_service, id_horaire)
+								 );
+								 
+								 
+								 
+								 
 

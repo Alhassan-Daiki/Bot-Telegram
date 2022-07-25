@@ -2,6 +2,7 @@ package com.ifnti.modele.service ;
 
 import java.util.ArrayList;
 
+import com.ifnti.controlleur.Kiakou;
 import com.ifnti.modele.adresse.Adresse;
 import com.ifnti.modele.categorie.Activite;
 
@@ -43,12 +44,12 @@ public class Service {
         private Activite mActivite = null;
         private Adresse mAdresse = null;
         
-        public ServiceBuilder withDescription(String pDesignation){
-            this.mDesignation = pDesignation;
+        public ServiceBuilder withDescription(String pDescription){
+            this.mDescription = pDescription.toLowerCase();
             return this;
         }
-        public ServiceBuilder withDesignation(String pDescription){
-            this.mDescription = pDescription;
+        public ServiceBuilder withDesignation(String pDesignation){
+            this.mDesignation = pDesignation.toLowerCase();
             return this;
         }
 
@@ -74,6 +75,7 @@ public class Service {
             service.mPersonne = mPersonne;
             service.mActivite = mActivite;
             service.mAdresse = mAdresse;
+            service.mNum = Kiakou.sDAO.create(service);
             return service;
         }
     }
@@ -91,7 +93,7 @@ public class Service {
     }
 
     public void setMDesignation(String mDesignation) {
-        this.mDesignation = mDesignation;
+        this.mDesignation = mDesignation.toLowerCase();
     }
 
     public String getMDescription() {
@@ -99,7 +101,7 @@ public class Service {
     }
 
     public void setMDescription(String mDescription) {
-        this.mDescription = mDescription;
+        this.mDescription = mDescription.toLowerCase();
     }
 
     public Personne getMPersonne() {
@@ -151,5 +153,12 @@ public class Service {
 
     public int getmMeanNote() {
         return mMeanNote;
+    }
+
+    @Override
+    public String toString() {
+        return "Service [mActivite=" + mActivite + ", mAdresse=" + mAdresse + ", mDescription=" + mDescription
+                + ", mDesignation=" + mDesignation + ", mMeanNote=" + mMeanNote + ", mNotes=" + mNotes + ", mNum="
+                + mNum + ", mPersonne=" + mPersonne + "]";
     }
 }
