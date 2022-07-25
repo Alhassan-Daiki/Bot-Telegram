@@ -1,8 +1,8 @@
 # Bot-Telegram
 
-******************
+------------------
 Utilisation du bot
-******************
+------------------
 
 * Package controller
 	Dans le package controlleur nous avons quatre (4) fichier classe.
