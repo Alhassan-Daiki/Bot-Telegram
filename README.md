@@ -1,6 +1,16 @@
 # Bot-Telegram
+--------------------------------------
+Utilisation du bot
+--------------------------------------
 
-# compréhension pour propriétaires.
+* Package controller
+	Dans le package controlleur nous avons quatre (4) fichier classe.
+	- Kiakou : qui ne comporte que des méthodes et de nouvelle instance d'objet DAO
+	- KiakouBot : Il comporte trois (3) méthodes : onUpdate(), get.
+
+--------------------------------------
+compréhension pour propriétaires.
+--------------------------------------
 
 * Lire le fichier png hierarchieDesFichiers.png on y explique l'organisation de notre repertoire kiekou.
 * Le ficher clean.py qui se trouve dans le modele sert à nettoyer nos fichiers Java générer par modélio.
