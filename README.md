@@ -1,12 +1,47 @@
 # Bot-Telegram
---------------------------------------
+-----------------
+
+******************
 Utilisation du bot
---------------------------------------
+******************
 
 * Package controller
 	Dans le package controlleur nous avons quatre (4) fichier classe.
 	- Kiakou : qui ne comporte que des méthodes et de nouvelle instance d'objet DAO
-	- KiakouBot : Il comporte trois (3) méthodes : onUpdate(), get.
+	- KiakouBot : Il comporte trois (3) méthodes : getBotUsername, getBotToken et onUpdateReceived() dans le quelle on traite tous les message reçut depuis le bot.
+	- SessionID : Cette classe permet au bot d'avoire une mémoire.
+	- Main : Classe dans la quelle on créer un nouvelle objet de type KiakouBot. C'est elle que vous devriez 
+	exécuter.
+* Package model
+	Contient toute nos classe modele et leur DAO.
+
+NB:
+---
+	Vous aurez peut être un problème de dépendance dans le pom.xml.
+	Pour régler ce problème :
+		- Créer vous même un projet marven.
+		- Ajouter les dépendances suivante dans votre fichier pom.xml
+		
+		```xml
+		<dependency>
+			<groupId>org.telegram</groupId>
+		       <artifactId>telegrambots</artifactId>
+		       <version>${telegram.version}</version>
+   		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+		     	<artifactId>shiro-core</artifactId>
+		     	<version>${shiro.version}</version>
+		</dependency>
+	    	<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+	    	<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.18.jre7</version>
+	    	</dependency>
+		```
+		-Copier coller les répertoires controlleur et modele dans votre répertoire com/domain(dans notre cas c'est com/ifnti)
 
 --------------------------------------
 compréhension pour propriétaires.
