@@ -14,18 +14,27 @@ public class AdresseDAO extends DAO<Adresse> {
 
     @Override
     public String create(Adresse a)  {
-
+        String lrf = null;
+        String str = "%s";
+        if (a.getMLieuDeReference() != null){
+            lrf = a.getMLieuDeReference().getMNum();
+            str = "'%s'";
+        }
         String requete = String.format(
-            "insert into adresse (id_quartier, id_reference) values('%s', '%s') returning id_adresse ;", 
-                       a.getQuartier().getMNum() , a.getLieuDeReference().getMNum()
+            "insert into adresse (id_quartier, id_reference) values('%s', "+str+") returning id_adresse ;", 
+                       a.getMQuartier().getMNum() , lrf
                        );
        String resultat = this.insertObject(requete,"adresse");
        return resultat;     
     }
 
     @Override
-    public boolean update(Adresse object) {
-        return false;
+    public boolean update(Adresse a) {
+    String requete = String.format("update adresse set id_quartier = '%s' where id_adresse = '%s';",
+                                    a.getMQuartier().getMNum(), a.getmNum());
+        //System.out.println(requete);
+       super.updateObject(requete);
+       return true;     
     }
 
     @Override

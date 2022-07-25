@@ -37,7 +37,12 @@ public class UseSqlFunction extends DAO {
     }
 
     public String useDclKeyFormat(String strNumber) {
-        int number = Integer.parseInt(strNumber);
+        int number ;
+        try {
+            number = Integer.parseInt(strNumber);
+        } catch (Exception e) {
+            return "";
+        }
         String requete = String.format("select keyFormat(%d) as keyFormat ;", number);
         ResultSet result = selectObject(requete);
         try {

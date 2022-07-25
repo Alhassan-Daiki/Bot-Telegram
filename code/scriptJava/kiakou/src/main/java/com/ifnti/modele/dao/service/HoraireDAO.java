@@ -1,5 +1,7 @@
 package com.ifnti.modele.dao.service ;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ifnti.modele.dao.DAO;
@@ -18,12 +20,17 @@ public class HoraireDAO extends DAO <Horaire> {
         int minute_fin_matinee =  h.getmMinute_fin_matinee();
         int minute_debut_soiree =  h.getmMinute_debut_soiree();
         int minute_fin_soiree =  h.getmMinute_fin_soiree();
+        int h24 = h.getmH24();
 
-        String requete = "insert into Horaire(heure_debut_matinee,heure_fin_matinee,heure_debut_soiree,heure_fin_soiree,minute_debut_matinee,minute_fin_matinee,minute_debut_soiree,minute_fin_soiree )values("+heure_debut_matinee+","+heure_fin_matinee+heure_debut_soiree + ","+ heure_fin_soiree + ","+minute_debut_matinee+ ","+ minute_fin_matinee+ ","+ minute_debut_soiree + ","+ minute_fin_soiree +")";
-        super.insertObject(requete,"horaire");
-
-
-        return null; 
+        String requete = String.format("insert into Horaire(heure_debut_matinee,heure_fin_matinee,heure_debut_soiree,heure_fin_soiree,"
+                        +"minute_debut_matinee,minute_fin_matinee,minute_debut_soiree,minute_fin_soiree, h24)"
+                        +"values(%d, %d, %d, %d, %d, %d, %d, %d, %d) returning id_horaire",
+                        heure_debut_matinee, heure_fin_matinee, heure_debut_soiree, heure_fin_soiree, minute_debut_matinee, 
+                        minute_fin_matinee, minute_debut_soiree, minute_fin_soiree, h24
+                        );
+        String resultat = super.insertObject(requete,"horaire");
+        
+        return resultat; 
     }
 
     @Override
@@ -40,7 +47,27 @@ public class HoraireDAO extends DAO <Horaire> {
 
     @Override
     public Horaire findById(String id) {
-        // TODO Auto-generated method stub
+        String requete = String.format("SELECT * FROM horaire WHERE id_horaire ='%s' ;", id);
+        ResultSet resultat = super.selectObject(requete);                 
+        try {
+            if (resultat.next()) {
+                int heure_debut_matinee =  resultat.getInt("heure_debut_matinee");
+                int heure_fin_matinee =  resultat.getInt("heure_fin_matinee");
+                int heure_debut_soiree =  resultat.getInt("heure_debut_soiree");
+                int heure_fin_soiree =  resultat.getInt("heure_fin_soiree");
+                int minute_debut_matinee =  resultat.getInt("minute_debut_matinee");
+                int minute_fin_matinee =  resultat.getInt("minute_fin_matinee");
+                int minute_debut_soiree =  resultat.getInt("minute_debut_soiree");
+                int minute_fin_soiree =  resultat.getInt("minute_fin_soiree");
+                int h24 = resultat.getInt("h24");;
+                Horaire horaire = new Horaire(heure_debut_matinee, heure_fin_matinee, 
+                                            heure_debut_soiree, heure_fin_soiree, minute_debut_matinee, 
+                                            minute_fin_matinee, minute_debut_soiree, minute_fin_soiree, h24, id);
+                return horaire;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
