@@ -1,5 +1,4 @@
 # Bot-Telegram
------------------
 
 ******************
 Utilisation du bot
@@ -16,7 +15,7 @@ Utilisation du bot
 	Contient toute nos classe modele et leur DAO.
 
 NB:
----
+
 	Vous aurez peut être un problème de dépendance dans le pom.xml.
 	Pour régler ce problème :
 		- Créer vous même un projet marven.
